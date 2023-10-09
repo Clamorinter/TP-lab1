@@ -6,7 +6,8 @@ class Textbook : public Bookshop
 {
 public:
 	Textbook();
-	//	Textbook(); with param
+	Textbook(std::string name, std::string author, int year,
+		std::string institution, int study_year, int num_of_pages, double price);
 	Textbook(const Textbook& original);
 	~Textbook();
 
