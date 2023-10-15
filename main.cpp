@@ -12,6 +12,9 @@ int main(void)
 bool menu(Keeper& keep)
 {
 	int answer;
+	std::string filepath;
+	std::ifstream fin;
+	std::ofstream fout;
 	Bookshop* member;
 	std::cout << "Select an action:" << std::endl;
 	std::cout << "1 - Add an element" << std::endl;
@@ -92,7 +95,18 @@ bool menu(Keeper& keep)
 		system("cls");
 		break;
 	case 4:
-
+		std::cout << "Enter the path there you want to be elements saved: " << std::endl;
+		std::cout << ">";
+		std::cin >> filepath;
+		fout.open(filepath);
+		if (!fout)
+		{
+			std::cout << "Cannot open this file" << std::endl;
+			system("pause");
+			system("cls");
+			return true;
+		}
+		fout << keep;
 		break;
 	case 5:
 
