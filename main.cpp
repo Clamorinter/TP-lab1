@@ -15,6 +15,8 @@ bool menu(Keeper& keep)
 	std::string filepath;
 	std::ifstream fin;
 	std::ofstream fout;
+	int length;
+	Keeper loaded;
 	Bookshop* member;
 	std::cout << "Select an action:" << std::endl;
 	std::cout << "1 - Add an element" << std::endl;
@@ -23,6 +25,7 @@ bool menu(Keeper& keep)
 	std::cout << "4 - Save elements in file" << std::endl;
 	std::cout << "5 - Load elements from file" << std::endl;
 	std::cout << "6 - Show elements" << std::endl;
+	std::cout << "7 - Delete all elements" << std::endl;
 	std::cout << "0 - Exit program" << std::endl;
 	std::cout << ">";
 	std::cin >> answer;
@@ -107,12 +110,43 @@ bool menu(Keeper& keep)
 			return true;
 		}
 		fout << keep;
+		std::cout << "Successfully saved." << std::endl;
+		fout.close();
+		system("pause");
+		system("cls");
 		break;
 	case 5:
-
+		std::cout << "Enter the path from there you want to be elements loaded: " << std::endl;
+		std::cout << ">";
+		std::cin >> filepath;
+		fin.open(filepath);
+		if (!fin)
+		{
+			std::cout << "Cannot open this file" << std::endl;
+			system("pause");
+			system("cls");
+			return true;
+		}
+		fin >> loaded;
+		keep += loaded;
+		length = loaded.get_length();
+		for (int i = 0; i < length; i++)
+		{
+			loaded.get_node(i)->data = nullptr;
+		}
+		fin.close();
+		std::cout << "Successfully loaded." << std::endl;
+		system("pause");
+		system("cls");
 		break;
 	case 6:
 		keep.printAll();
+		system("pause");
+		system("cls");
+		break;
+	case 7:
+		keep.deleteAll();
+		std::cout << "Successfully deleted." << std::endl;
 		system("pause");
 		system("cls");
 		break;

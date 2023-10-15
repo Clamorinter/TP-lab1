@@ -40,8 +40,7 @@ public:
 	void printMember(int n = -1) const;
 	void printAll() const;
 
-	Keeper& operator= (const Keeper& original);
-	Keeper operator+ (const Keeper& second);
+	void operator+= (const Keeper& second);
 
 	int get_length() const;
 	KeeperNode* get_node(int n);

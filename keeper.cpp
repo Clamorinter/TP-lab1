@@ -55,6 +55,10 @@ void Keeper::read_all(std::ifstream& fin)
 	while (!fin.eof())
 	{
 		fin >> type;
+		if (fin.eof())
+		{
+			break;
+		}
 		switch (type)
 		{
 		case 'b':
@@ -70,12 +74,16 @@ void Keeper::read_all(std::ifstream& fin)
 			return;
 		}
 		newData->fstream_in(fin);
-		length++;
+		insertMember(newData, length - 1);
 	}
 }
 
 void Keeper::insertMember(Bookshop* member, int n)
 {
+	if (length == 0)
+	{
+		n = -1;
+	}
 	if (n <= -1)
 	{
 		KeeperNode* newHead = new KeeperNode;
@@ -104,16 +112,13 @@ void Keeper::insertMember(Bookshop* member, int n)
 		{
 			tail->next = newTail;
 		}
-		else
-		{
-			head = newTail;
-		}
 		tail = newTail;
 		length++;
 		return;
 	}
 	KeeperNode* newNode = new KeeperNode;
 	KeeperNode* prevNode = get_node(n);
+
 	newNode->prev = prevNode;
 	newNode->next = prevNode->next;
 	newNode->data = member;
@@ -194,45 +199,28 @@ void Keeper::printAll() const
 	}
 }
 
-Keeper& Keeper::operator= (const Keeper& original)
+void Keeper::operator+= (const Keeper& second)
 {
-	if (this == &original)
-	{
-		return *this;
-	}
-	deleteAll();
-	head = tail = nullptr;
-	length = 0;
-	int count = original.get_length();
-	for (int i = 0; i < count; i++)
-	{
-		insertMember(original.get_node(i-1)->data);
-	}
-	return *this;
-}
-Keeper Keeper::operator+ (const Keeper& second)
-{
-	Keeper sum(*this);
 	KeeperNode* secNode = second.get_node(-1);
 	while (secNode)
 	{
-		sum.insertMember(secNode->data, sum.get_length() - 1);
+		insertMember(secNode->data, get_length() - 1);
 		secNode = secNode->next;
 	}
-	return sum;
+	return;
 }
 
 int Keeper::get_length() const
 {
 	return length;
 }
-KeeperNode* Keeper::get_node(int n = -1)
+KeeperNode* Keeper::get_node(int n = 0)
 {
 	if (length == 0)
 	{
 		throw Keeper_Error("Invalid number of Node");
 	}
-	if (n <= -1)
+	if (n <= 0)
 	{
 		n = 0;
 	}
@@ -252,7 +240,7 @@ KeeperNode* Keeper::get_node(int n = -1)
 	else
 	{
 		Node = tail;
-		for (int i = 0; i < length - n; i++)
+		for (int i = 0; i < length - n-1; i++)
 		{
 			Node = Node->prev;
 		}
@@ -260,13 +248,13 @@ KeeperNode* Keeper::get_node(int n = -1)
 	return Node;
 }
 
-KeeperNode* Keeper::get_node(int n = -1) const
+KeeperNode* Keeper::get_node(int n = 0) const
 {
 	if (length == 0)
 	{
 		throw Keeper_Error("Invalid number of Node");
 	}
-	if (n <= -1)
+	if (n <= 0)
 	{
 		n = 0;
 	}
@@ -286,7 +274,7 @@ KeeperNode* Keeper::get_node(int n = -1) const
 	else
 	{
 		Node = tail;
-		for (int i = 0; i < length - n; i++)
+		for (int i = 0; i < length - n-1; i++)
 		{
 			Node = Node->prev;
 		}
