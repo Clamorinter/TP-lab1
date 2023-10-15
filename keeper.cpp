@@ -130,7 +130,8 @@ void Keeper::deleteMember(int n)
 	{
 		throw Keeper_Error("Where are no elements in Keeper");
 	}
-	if (n <= -1)
+	KeeperNode* deletingNode = get_node(n);
+	if (deletingNode == head)
 	{
 		KeeperNode* newHead = head->next;
 		if (newHead)
@@ -143,7 +144,7 @@ void Keeper::deleteMember(int n)
 		length--;
 		return;
 	}
-	if (n >= length - 1)
+	if (deletingNode == tail)
 	{
 		KeeperNode* newTail = tail->prev;
 		if (newTail)
@@ -156,7 +157,6 @@ void Keeper::deleteMember(int n)
 		length--;
 		return;
 	}
-	KeeperNode* deletingNode = get_node(n);
 	deletingNode->prev->next = deletingNode->next;
 	deletingNode->next->prev = deletingNode->prev;
 	delete deletingNode->data;
@@ -181,6 +181,11 @@ void Keeper::printMember(int n) const
 
 void Keeper::printAll() const
 {
+	if (length == 0)
+	{
+		std::cout << "There are no elemets." << std::endl;
+		return;
+	}
 	int count = length;
 	for (int i = 0; i < count; i++)
 	{

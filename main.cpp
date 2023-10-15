@@ -57,7 +57,21 @@ bool menu(Keeper& keep)
 		system("cls");
 		break;
 	case 2:
-
+		std::cout << "What element you want to delete?" << std::endl;
+		keep.printAll();
+		std::cout << ">";
+		std::cin >> answer;
+		try
+		{
+			keep.deleteMember(answer - 1);
+			std::cout << "Successfully deleted." << std::endl;
+		}
+		catch (const Keeper_Error& err)
+		{
+			std::cout << "Keeper error: " << err.what() << std::endl;
+		}
+		system("pause");
+		system("cls");
 		break;
 
 	case 3:
