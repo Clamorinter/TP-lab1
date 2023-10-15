@@ -11,7 +11,7 @@ int main(void)
 
 bool menu(Keeper& keep)
 {
-	int answer; 
+	int answer;
 	Bookshop* member;
 	std::cout << "Select an action:" << std::endl;
 	std::cout << "1 - Add an element" << std::endl;
@@ -57,7 +57,7 @@ bool menu(Keeper& keep)
 		system("cls");
 		break;
 	case 2:
-		std::cout << "What element you want to delete?" << std::endl;
+		std::cout << "What element do you want to delete?" << std::endl;
 		keep.printAll();
 		std::cout << ">";
 		std::cin >> answer;
@@ -75,7 +75,21 @@ bool menu(Keeper& keep)
 		break;
 
 	case 3:
-
+		std::cout << "What element do you want to change?" << std::endl;
+		keep.printAll();
+		std::cout << ">";
+		std::cin >> answer;
+		system("cls");
+		try {
+			keep.get_node(answer - 1)->data->change_param();
+			std::cout << "Successfully changed." << std::endl;
+		}
+		catch (const Keeper_Error& err)
+		{
+			std::cout << "Keeper error: " << err.what() << std::endl;
+		}
+		system("pause");
+		system("cls");
 		break;
 	case 4:
 
