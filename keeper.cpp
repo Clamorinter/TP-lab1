@@ -9,17 +9,20 @@ const char* Keeper_Error::what() const noexcept
 
 Keeper::Keeper()
 {
+	std::cout << "Keeper constructor without parameters" << std::endl;
 	head = tail = nullptr;
 	length = 0;
 }
 Keeper::Keeper(Bookshop* head)
 {
+	std::cout << "Keeper constructor with parameters" << std::endl;
 	this->head = tail = nullptr;
 	length = 0;
 	insertMember(head);
 }
 Keeper::Keeper(const Keeper& original)
 {
+	std::cout << "Keeper copy constructor" << std::endl;
 	head = tail = nullptr;
 	length = 0;
 	int count = original.get_length();
@@ -30,6 +33,7 @@ Keeper::Keeper(const Keeper& original)
 }
 Keeper::~Keeper()
 {
+	std::cout << "Keeper destructor" << std::endl;
 	deleteAll();
 }
 

@@ -2,6 +2,7 @@
 
 Book::Book()
 {
+	std::cout << "Book constructor without parameters" << std::endl;
 	set_type('b');
 	set_defined(false);
 }
@@ -10,11 +11,13 @@ Book::Book(std::string name, std::string author, int year,
 	name(name), author(author), year(year), annotation(annotation), genre(genre),
 	num_of_pages(num_of_pages), price(price) 
 {
+	std::cout << "Book constructor with parameters" << std::endl;
 	set_type('b');
 	set_defined(true);
 };
 Book::Book(const Book& original)
 {
+	std::cout << "Book copy constructor" << std::endl;
 	set_defined(original.is_defined());
 	set_type(original.get_type());
 	if (is_defined())
@@ -28,7 +31,10 @@ Book::Book(const Book& original)
 		price = original.get_price();
 	}
 }
-Book::~Book() {}
+Book::~Book() 
+{
+	std::cout << "Book destructor" << std::endl;
+}
 
 void Book::fstream_in(std::ifstream& fin)
 {

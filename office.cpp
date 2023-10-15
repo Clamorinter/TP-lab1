@@ -2,6 +2,7 @@
 
 Office::Office()
 {
+	std::cout << "Office constructor without parameters" << std::endl;
 	set_type('o');
 	set_defined(false);
 }
@@ -9,11 +10,13 @@ Office::Office(std::string type_of, std::string color,
 	std::string purpose, double price) :
 	type_of(type_of), color(color), purpose(purpose), price(price) 
 {
+	std::cout << "Office constructor with parameters" << std::endl;
 	set_type('o');
 	set_defined(true);
 };
 Office::Office(const Office& original)
 {
+	std::cout << "Office copy constructor" << std::endl;
 	set_defined(original.is_defined());
 	set_type(original.get_type());
 	if (is_defined())
@@ -24,7 +27,10 @@ Office::Office(const Office& original)
 		price = original.get_price();
 	}
 }
-Office::~Office() {}
+Office::~Office() 
+{
+	std::cout << "Office destructor" << std::endl;
+}
 
 void Office::fstream_in(std::ifstream& fin)
 {

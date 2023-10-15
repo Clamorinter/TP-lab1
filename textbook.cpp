@@ -2,6 +2,7 @@
 
 Textbook::Textbook()
 {
+	std::cout << "Textbook constructor without parameters" << std::endl;
 	set_type('t');
 	set_defined(false);
 }
@@ -10,11 +11,13 @@ Textbook::Textbook(std::string name, std::string author, int year,
 	name(name), author(author), year(year), institution(institution), study_year(study_year),
 	num_of_pages(num_of_pages), price(price) 
 {
+	std::cout << "Textbook constructor with parameters" << std::endl;
 	set_type('t');
 	set_defined(true);
 };
 Textbook::Textbook(const Textbook& original)
 {
+	std::cout << "Textbook copy constructor" << std::endl;
 	set_defined(original.is_defined());
 	set_type(original.get_type());
 	if (is_defined())
@@ -28,7 +31,10 @@ Textbook::Textbook(const Textbook& original)
 		price = original.get_price();
 	}
 }
-Textbook::~Textbook() {}
+Textbook::~Textbook() 
+{
+	std::cout << "Textbook destructor" << std::endl;
+}
 
 void Textbook::fstream_in(std::ifstream& fin)
 {

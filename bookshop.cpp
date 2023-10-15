@@ -2,11 +2,15 @@
 
 Bookshop::Bookshop()
 {
+	std::cout << "Bookshop constructor without parameters" << std::endl;
 	type = 'a';
 	defined = false;
 }
 
-Bookshop::~Bookshop() {}
+Bookshop::~Bookshop() 
+{
+	std::cout << "Bookshop destructor" << std::endl;
+}
 
 char Bookshop::get_type() const
 {
