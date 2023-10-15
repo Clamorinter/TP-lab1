@@ -2,27 +2,53 @@
 
 Office::Office()
 {
-
+	set_type('o');
+	set_defined(false);
 }
 Office::Office(std::string type_of, std::string color,
 	std::string purpose, double price) :
-	type_of(type_of), color(color), purpose(purpose), price(price) {};
+	type_of(type_of), color(color), purpose(purpose), price(price) 
+{
+	set_type('o');
+	set_defined(true);
+};
 Office::Office(const Office& original)
 {
-
+	set_defined(original.is_defined());
+	set_type(original.get_type());
+	if (is_defined())
+	{
+		type_of = original.get_type_of();
+		color = original.get_color();
+		purpose = original.get_purpose();
+		price = original.get_price();
+	}
 }
 Office::~Office()
 {
 
 }
 
-void Office::fstream_in(const std::ifstream& fin)
+void Office::fstream_in(std::ifstream& fin)
 {
-
+	char type;
+	bool defined;
+	fin >> type >> defined;
+	set_type(type);
+	set_defined(defined);
+	if (defined)
+	{
+		fin >> type_of >> color >> purpose >> price;
+	}
 }
-Bookshop* Office::fstream_out(const std::ofstream& fout)
+Bookshop* Office::fstream_out(std::ofstream& fout)
 {
-
+	fout << get_type() << std::endl << is_defined() << std::endl;
+	if (is_defined())
+	{
+		fout << type_of << std::endl << color << std::endl << purpose
+			<< std::endl << price << std::endl;
+	}
 }
 
 std::string Office::get_type_of() const

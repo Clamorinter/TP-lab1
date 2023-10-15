@@ -11,8 +11,8 @@ public:
 	Office(const Office& original);
 	~Office();
 
-	void fstream_in(const std::ifstream& fin);
-	Bookshop* fstream_out(const std::ofstream& fout);
+	void fstream_in(std::ifstream& fin);
+	Bookshop* fstream_out(std::ofstream& fout);
 
 	std::string get_type_of() const;
 	std::string get_color() const;
