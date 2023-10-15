@@ -4,6 +4,10 @@ Keeper::Keeper()
 {
 
 }
+Keeper::Keeper(const Bookshop* head)
+{
+
+}
 Keeper::Keeper(const Keeper& original)
 {
 
@@ -18,12 +22,13 @@ const void Keeper::save_all(const std::ifstream& fin)
 	
 }
 
+
 void Keeper::read_all(const std::ofstream& fout)
 {
 
 }
 
-void Keeper::addMember(const Bookshop* member)
+void Keeper::addMemberAfter(const Bookshop* member, int number)
 {
 
 }

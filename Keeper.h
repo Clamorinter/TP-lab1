@@ -4,21 +4,31 @@
 #include "textbook.h"
 #include "office.h"
 
+class KeeperNode
+{
+public:
+	Bookshop* data = nullptr;
+	KeeperNode* next = nullptr;
+	KeeperNode* prev = nullptr;
+};
+
 class Keeper
 {
 public:
 	Keeper();
+	Keeper(const Bookshop* member);
 	Keeper(const Keeper& original);
 	~Keeper();
 
 	const void save_all(const std::ifstream &fin);
 	void read_all(const std::ofstream &fout);
 
-	void addMember(const Bookshop* member);
+	void addMemberAfter(const Bookshop* member, int number);
 	void deleteMember(int i);
 
 	int get_length();
 private:
-	Bookshop* storage;
+	KeeperNode* head;
+	KeeperNode* tail;
 	int length;
 };
