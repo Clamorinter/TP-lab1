@@ -50,7 +50,7 @@ Bookshop* Book::fstream_out(std::ofstream& fout)
 	{
 		fout << name << std::endl << author << std::endl << year
 			<< std::endl << annotation << std::endl << genre
-			<< std::endl << num_of_pages << std::endl << price;
+			<< std::endl << num_of_pages << std::endl << price << std::endl;
 	}
 }
 
