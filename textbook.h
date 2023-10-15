@@ -14,7 +14,10 @@ public:
 	void fstream_in(std::ifstream& fin);
 	void fstream_out(std::ofstream& fout) const;
 
+	void iostream_in();
 	void iostream_out() const;
+
+	void change_param();
 
 	std::string get_name() const;
 	std::string get_author() const;

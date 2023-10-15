@@ -70,6 +70,29 @@ void Textbook::iostream_out() const
 		std::cout << "Not defined" << std::endl;
 }
 
+void Textbook::iostream_in()
+{
+	std::cout << "Type name: ";
+	std::cin >> name;
+	std::cout << "Type author: ";
+	std::cin >> author;
+	std::cout << "Type year: ";
+	std::cin >> year;
+	std::cout << "Type institution: ";
+	std::cin >> institution;
+	std::cout << "Type study year: ";
+	std::cin >> study_year;
+	std::cout << "Type number of pages: ";
+	std::cin >> num_of_pages;
+	std::cout << "Type price: ";
+	std::cin >> price;
+}
+
+void Textbook::change_param()
+{
+
+}
+
 std::string Textbook::get_name() const
 {
 	return name;

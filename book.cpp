@@ -70,6 +70,29 @@ void Book::iostream_out() const
 		std::cout << "Not defined" << std::endl;
 }
 
+void Book::iostream_in()
+{
+	std::cout << "Type name: ";
+	std::cin >> name;
+	std::cout << "Type author: ";
+	std::cin >> author;
+	std::cout << "Type year: ";
+	std::cin >> year;
+	std::cout << "Type annotation: ";
+	std::cin >> annotation;
+	std::cout << "Type genre: ";
+	std::cin >> genre;
+	std::cout << "Type number of pages: ";
+	std::cin >> num_of_pages;
+	std::cout << "Type price: ";
+	std::cin >> price;
+}
+
+void Book::change_param()
+{
+
+}
+
 std::string Book::get_name() const
 {
 	return name;

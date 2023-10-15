@@ -61,6 +61,23 @@ void Office::iostream_out() const
 		std::cout << "Not defined" << std::endl;
 }
 
+void Office::iostream_in()
+{
+	std::cout << "Type type of the object: ";
+	std::cin >> type_of;
+	std::cout << "Type color: ";
+	std::cin >> color;
+	std::cout << "Type purpose: ";
+	std::cin >> purpose;
+	std::cout << "Type price: ";
+	std::cin >> price;
+}
+
+void Office::change_param()
+{
+
+}
+
 std::string Office::get_type_of() const
 {
 	return type_of;
