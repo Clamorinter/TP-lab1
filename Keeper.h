@@ -12,6 +12,15 @@ public:
 	KeeperNode* prev = nullptr;
 };
 
+class Keeper_Error : public std::exception
+{
+public:
+	Keeper_Error(const std::string& message);
+	const char* what() const noexcept override;
+private:
+	std::string message;
+};
+
 class Keeper
 {
 public:
