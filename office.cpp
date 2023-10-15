@@ -31,17 +31,16 @@ Office::~Office()
 
 void Office::fstream_in(std::ifstream& fin)
 {
-	char type;
 	bool defined;
-	fin >> type >> defined;
-	set_type(type);
+	set_type('o');
+	fin >> defined;
 	set_defined(defined);
 	if (defined)
 	{
 		fin >> type_of >> color >> purpose >> price;
 	}
 }
-Bookshop* Office::fstream_out(std::ofstream& fout)
+void Office::fstream_out(std::ofstream& fout) const
 {
 	fout << get_type() << std::endl << is_defined() << std::endl;
 	if (is_defined())

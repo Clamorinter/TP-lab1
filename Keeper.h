@@ -25,26 +25,35 @@ class Keeper
 {
 public:
 	Keeper();
-	Keeper(const Bookshop* member);
+	Keeper(Bookshop* member);
 	Keeper(const Keeper& original);
 	~Keeper();
 
-	void save_all(const std::ifstream &fin) const;
-	void read_all(const std::ofstream &fout);
+	void save_all(std::ofstream &fout) const;
+	void read_all(std::ifstream &fin);
 
-	void insertMember(Bookshop* member, int n = 0);
+	void insertMember(Bookshop* member, int n = -1);
 
-	void deleteMember(int n);
+	void deleteMember(int n = -1);
 	void deleteAll();
 
-	void printMember(int n) const;
+	void printMember(int n = -1) const;
 	void printAll() const;
 
-	Keeper& operator= (const Keeper&);
-	Keeper operator+ (const Keeper&);
+	void inputMember(int n);
+
+	Keeper& operator= (const Keeper& original);
+	Keeper operator+ (const Keeper& second);
 
 	int get_length() const;
-	Bookshop* get_node(int n) const;
+	KeeperNode* get_node(int n);
+	KeeperNode* get_node(int n) const;
+
+	friend void operator<< (std::ostream& os, const Keeper& keep);
+	friend void operator>> (std::istream& is, Keeper& keep);
+
+	friend void operator<< (std::ofstream& fout, const Keeper& keep);
+	friend void operator>> (std::ifstream& fin, Keeper& keep);
 private:
 	KeeperNode* head;
 	KeeperNode* tail;

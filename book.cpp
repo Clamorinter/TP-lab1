@@ -32,10 +32,9 @@ Book::~Book() {}
 
 void Book::fstream_in(std::ifstream& fin)
 {
-	char type;
 	bool defined;
-	fin >> type >> defined;
-	set_type(type);
+	fin >> defined;
+	set_type('b');
 	set_defined(defined);
 	if (defined)
 	{
@@ -43,7 +42,7 @@ void Book::fstream_in(std::ifstream& fin)
 			>> price;
 	}
 }
-Bookshop* Book::fstream_out(std::ofstream& fout)
+void Book::fstream_out(std::ofstream& fout) const
 {
 	fout << get_type() << std::endl << is_defined() << std::endl;
 	if (is_defined())
