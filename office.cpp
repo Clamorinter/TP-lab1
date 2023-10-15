@@ -75,7 +75,41 @@ void Office::iostream_in()
 
 void Office::change_param()
 {
-
+	if (!is_defined())
+	{
+		return; //place for a throw
+	}
+	int answer;
+	std::cout << "Which parameter do you want to change?" << std::endl;
+	std::cout << "1 - type of the object" << std::endl;
+	std::cout << "2 - color" << std::endl;
+	std::cout << "3 - purpose" << std::endl;
+	std::cout << "4 - price" << std::endl;
+	std::cout << ">";
+	std::cin >> answer;
+	switch (answer)
+	{
+	case 1:
+		std::cout << "Old type of the object: " << type_of << std::endl;
+		std::cout << "New type of the object: ";
+		std::cin >> type_of;
+		break;
+	case 2:
+		std::cout << "Old color: " << color << std::endl;
+		std::cout << "New color: ";
+		std::cin >> color;
+		break;
+	case 3:
+		std::cout << "Old purpose: " << purpose << std::endl;
+		std::cout << "New purpose: ";
+		std::cin >> purpose;
+		break;
+	case 4:
+		std::cout << "Old price: " << price << std::endl;
+		std::cout << "New price: ";
+		std::cin >> price;
+		break;
+	}
 }
 
 std::string Office::get_type_of() const

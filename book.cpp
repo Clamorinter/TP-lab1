@@ -90,7 +90,59 @@ void Book::iostream_in()
 
 void Book::change_param()
 {
-
+	if (!is_defined())
+	{
+		return; //place for a throw
+	}
+	int answer;
+	std::cout << "Which parameter do you want to change?" << std::endl;
+	std::cout << "1 - name" << std::endl;
+	std::cout << "2 - author" << std::endl;
+	std::cout << "3 - year" << std::endl;
+	std::cout << "4 - annotation" << std::endl;
+	std::cout << "5 - genre" << std::endl;
+	std::cout << "6 - number of pages" << std::endl;
+	std::cout << "7 - price" << std::endl;
+	std::cout << ">";
+	std::cin >> answer;
+	switch (answer)
+	{
+	case 1:
+		std::cout << "Old name: " << name << std::endl;
+		std::cout << "New name: ";
+		std::cin >> name;
+		break;
+	case 2:
+		std::cout << "Old author: " << author << std::endl;
+		std::cout << "New author: ";
+		std::cin >> author;
+		break;
+	case 3:
+		std::cout << "Old year: " << year << std::endl;
+		std::cout << "New year: ";
+		std::cin >> year;
+		break;
+	case 4:
+		std::cout << "Old annotation: " << annotation << std::endl;
+		std::cout << "New annotation: ";
+		std::cin >> annotation;
+		break;
+	case 5:
+		std::cout << "Old genre: " << genre << std::endl;
+		std::cout << "New genre: ";
+		std::cin >> genre;
+		break;
+	case 6:
+		std::cout << "Old number of pages: " << num_of_pages << std::endl;
+		std::cout << "New number of pages: ";
+		std::cin >> num_of_pages;
+		break;
+	case 7:
+		std::cout << "Old price: " << price << std::endl;
+		std::cout << "New price: ";
+		std::cin >> price;
+		break;
+	}
 }
 
 std::string Book::get_name() const
