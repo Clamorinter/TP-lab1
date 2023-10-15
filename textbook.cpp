@@ -2,7 +2,8 @@
 
 Textbook::Textbook()
 {
-
+	set_type('t');
+	set_defined(false);
 }
 Textbook::Textbook(std::string name, std::string author, int year,
 	std::string institution, int study_year, int num_of_pages, double price) :
@@ -10,20 +11,33 @@ Textbook::Textbook(std::string name, std::string author, int year,
 	num_of_pages(num_of_pages), price(price) {};
 Textbook::Textbook(const Textbook& original)
 {
-
+	set_type('t');
+	set_defined(true);
 }
-Textbook::~Textbook()
-{
+Textbook::~Textbook() {}
 
+void Textbook::fstream_in(std::ifstream& fin)
+{
+	char type;
+	bool defined;
+	fin >> type >> defined;
+	set_type(type);
+	set_defined(defined);
+	if (defined)
+	{
+		fin >> name >> author >> year >> institution >> study_year >> num_of_pages
+			>> price;
+	}
 }
-
-void Textbook::fstream_in(const std::ifstream& fin)
+Bookshop* Textbook::fstream_out(std::ofstream& fout)
 {
-
-}
-Bookshop* Textbook::fstream_out(const std::ofstream& fout)
-{
-
+	fout << get_type() << std::endl << is_defined() << std::endl;
+	if (is_defined())
+	{
+		fout << name << std::endl << author << std::endl << year
+			<< std::endl << institution << std::endl << study_year
+			<< std::endl << num_of_pages << std::endl << price;
+	}
 }
 
 std::string Textbook::get_name() const
