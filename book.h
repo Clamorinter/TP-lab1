@@ -11,8 +11,8 @@ public:
 	Book(const Book& original);
 	~Book();
 
-	void fstream_in(const std::ifstream& fin);
-	Bookshop* fstream_out(const std::ofstream& fout);
+	void fstream_in(std::ifstream& fin);
+	Bookshop* fstream_out(std::ofstream& fout);
 
 	std::string get_name() const;
 	std::string get_author() const;
