@@ -32,10 +32,22 @@ public:
 	void save_all(const std::ifstream &fin) const;
 	void read_all(const std::ofstream &fout);
 
-	void addMemberAfter(const Bookshop* member, int number);
+	void addMemberHead(Bookshop* member);
+	void addMemberTail(Bookshop* member);
+	void insertMember(int pos = 0);
+
+
 	void deleteMember(int i);
+	void deleteAll();
+
+	void printMember(int i);
+	void printAll() const;
+
+	Keeper& operator= (const Keeper&);
+	Keeper operator+ (const Keeper&);
 
 	int get_length() const;
+	Bookshop* get_node(int n) const;
 private:
 	KeeperNode* head;
 	KeeperNode* tail;

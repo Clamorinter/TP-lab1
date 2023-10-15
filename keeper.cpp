@@ -35,7 +35,7 @@ void Keeper::read_all(const std::ofstream& fout)
 
 }
 
-void Keeper::addMemberAfter(const Bookshop* member, int number)
+void Keeper::addMemberAfter(Bookshop* member, int number)
 {
 	if (number >= length)
 	{
@@ -43,7 +43,10 @@ void Keeper::addMemberAfter(const Bookshop* member, int number)
 	}
 	if (number == -1)
 	{
-
+		KeeperNode* newNode = new KeeperNode;
+		newNode->data = member;
+		newNode->next = nullptr;
+		newNode->prev = nullptr;
 	}
 }
 
