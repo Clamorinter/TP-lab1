@@ -38,8 +38,13 @@ void Textbook::fstream_in(std::ifstream& fin)
 	set_defined(defined);
 	if (defined)
 	{
-		fin >> name >> author >> year >> institution >> study_year >> num_of_pages
-			>> price;
+		fin.ignore();
+		std::getline(fin, name);
+		std::getline(fin, author);
+		fin >> year;
+		fin.ignore();
+		std::getline(fin, institution);
+		fin >> study_year >> num_of_pages >> price;
 	}
 }
 void Textbook::fstream_out(std::ofstream& fout) const
@@ -51,6 +56,7 @@ void Textbook::fstream_out(std::ofstream& fout) const
 			<< std::endl << institution << std::endl << study_year
 			<< std::endl << num_of_pages << std::endl << price << std::endl;
 	}
+
 }
 
 void Textbook::iostream_out() const
@@ -58,34 +64,37 @@ void Textbook::iostream_out() const
 	std::cout << "Type: Textbook" << std::endl;
 	if (is_defined())
 	{
-		std::cout << "Name: " << name << std::endl;
-		std::cout << "Author: " << author << std::endl;
-		std::cout << "Year: " << year << std::endl;
-		std::cout << "Institution: " << institution << std::endl;
-		std::cout << "Study year: " << study_year << std::endl;
-		std::cout << "Number of pages: " << num_of_pages << std::endl;
-		std::cout << "Price: " << price << std::endl;
+		std::cout << "\tName: " << name << std::endl;
+		std::cout << "\tAuthor: " << author << std::endl;
+		std::cout << "\tYear: " << year << std::endl;
+		std::cout << "\tInstitution: " << institution << std::endl;
+		std::cout << "\tStudy year: " << study_year << std::endl;
+		std::cout << "\tNumber of pages: " << num_of_pages << std::endl;
+		std::cout << "\tPrice: " << price << std::endl;
 	}
 	else
-		std::cout << "Not defined" << std::endl;
+		std::cout << "\tNot defined" << std::endl;
 }
 
 void Textbook::iostream_in()
 {
 	std::cout << "Type name: ";
-	std::cin >> name;
+	std::cin.ignore();
+	std::getline(std::cin, name);
 	std::cout << "Type author: ";
-	std::cin >> author;
+	std::getline(std::cin, author);
 	std::cout << "Type year: ";
 	std::cin >> year;
 	std::cout << "Type institution: ";
-	std::cin >> institution;
+	std::cin.ignore();
+	std::getline(std::cin, institution);
 	std::cout << "Type study year: ";
 	std::cin >> study_year;
 	std::cout << "Type number of pages: ";
 	std::cin >> num_of_pages;
 	std::cout << "Type price: ";
 	std::cin >> price;
+	set_defined(true);
 }
 
 void Textbook::change_param()
@@ -110,12 +119,14 @@ void Textbook::change_param()
 	case 1:
 		std::cout << "Old name: " << name << std::endl;
 		std::cout << "New name: ";
-		std::cin >> name;
+		std::cin.ignore();
+		std::getline(std::cin, name);
 		break;
 	case 2:
 		std::cout << "Old author: " << author << std::endl;
 		std::cout << "New author: ";
-		std::cin >> author;
+		std::cin.ignore();
+		std::getline(std::cin, author);
 		break;
 	case 3:
 		std::cout << "Old year: " << year << std::endl;
@@ -125,7 +136,8 @@ void Textbook::change_param()
 	case 4:
 		std::cout << "Old institution: " << institution << std::endl;
 		std::cout << "New institution: ";
-		std::cin >> institution;
+		std::cin.ignore();
+		std::getline(std::cin, institution);
 		break;
 	case 5:
 		std::cout << "Old study year: " << study_year << std::endl;

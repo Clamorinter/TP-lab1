@@ -74,7 +74,7 @@ void Keeper::read_all(std::ifstream& fin)
 	}
 }
 
-void Keeper::insertMember(Bookshop* member, int n = -1)
+void Keeper::insertMember(Bookshop* member, int n)
 {
 	if (n <= -1)
 	{
@@ -109,6 +109,7 @@ void Keeper::insertMember(Bookshop* member, int n = -1)
 			head = newTail;
 		}
 		tail = newTail;
+		length++;
 		return;
 	}
 	KeeperNode* newNode = new KeeperNode;
@@ -123,7 +124,7 @@ void Keeper::insertMember(Bookshop* member, int n = -1)
 }
 
 
-void Keeper::deleteMember(int n = -1)
+void Keeper::deleteMember(int n)
 {
 	if (length == 0)
 	{
@@ -132,7 +133,10 @@ void Keeper::deleteMember(int n = -1)
 	if (n <= -1)
 	{
 		KeeperNode* newHead = head->next;
-		newHead->prev = nullptr;
+		if (newHead)
+		{
+			newHead->prev = nullptr;
+		}
 		delete head->data;
 		delete head;
 		head = newHead;
@@ -142,7 +146,10 @@ void Keeper::deleteMember(int n = -1)
 	if (n >= length - 1)
 	{
 		KeeperNode* newTail = tail->prev;
-		newTail->next = nullptr;
+		if (newTail)
+		{
+			newTail->next = nullptr;
+		}
 		delete tail->data;
 		delete tail;
 		tail = newTail;
@@ -167,7 +174,7 @@ void Keeper::deleteAll()
 	}
 }
 
-void Keeper::printMember(int n = -1) const
+void Keeper::printMember(int n) const
 {
 	get_node(n)->data->iostream_out();
 }
@@ -177,6 +184,7 @@ void Keeper::printAll() const
 	int count = length;
 	for (int i = 0; i < count; i++)
 	{
+		std::cout << i + 1 << ". ";
 		printMember(i);
 	}
 }

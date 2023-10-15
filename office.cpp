@@ -34,7 +34,12 @@ void Office::fstream_in(std::ifstream& fin)
 	set_defined(defined);
 	if (defined)
 	{
-		fin >> type_of >> color >> purpose >> price;
+		fin.ignore();
+		std::getline(fin, type_of);
+		fin >> color;
+		fin.ignore();
+		std::getline(fin, purpose);
+		fin >> price;
 	}
 }
 void Office::fstream_out(std::ofstream& fout) const
@@ -52,25 +57,28 @@ void Office::iostream_out() const
 	std::cout << "Type: Office" << std::endl;
 	if (is_defined())
 	{
-		std::cout << "Type of the object: " << type_of << std::endl;
-		std::cout << "Color: " << color << std::endl;
-		std::cout << "Purpose: " << purpose << std::endl;
-		std::cout << "Price: " << price << std::endl;
+		std::cout << "\tType of the object: " << type_of << std::endl;
+		std::cout << "\tColor: " << color << std::endl;
+		std::cout << "\tPurpose: " << purpose << std::endl;
+		std::cout << "\tPrice: " << price << std::endl;
 	}
 	else
-		std::cout << "Not defined" << std::endl;
+		std::cout << "\tNot defined" << std::endl;
 }
 
 void Office::iostream_in()
 {
 	std::cout << "Type type of the object: ";
-	std::cin >> type_of;
+	std::cin.ignore();
+	std::getline(std::cin, type_of);
 	std::cout << "Type color: ";
 	std::cin >> color;
 	std::cout << "Type purpose: ";
-	std::cin >> purpose;
+	std::cin.ignore();
+	std::getline(std::cin, purpose);
 	std::cout << "Type price: ";
 	std::cin >> price;
+	set_defined(true);
 }
 
 void Office::change_param()
@@ -92,7 +100,8 @@ void Office::change_param()
 	case 1:
 		std::cout << "Old type of the object: " << type_of << std::endl;
 		std::cout << "New type of the object: ";
-		std::cin >> type_of;
+		std::cin.ignore();
+		std::getline(std::cin, type_of);
 		break;
 	case 2:
 		std::cout << "Old color: " << color << std::endl;
@@ -102,7 +111,8 @@ void Office::change_param()
 	case 3:
 		std::cout << "Old purpose: " << purpose << std::endl;
 		std::cout << "New purpose: ";
-		std::cin >> purpose;
+		std::cin.ignore();
+		std::getline(std::cin, purpose);
 		break;
 	case 4:
 		std::cout << "Old price: " << price << std::endl;

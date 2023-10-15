@@ -11,8 +11,7 @@ int main(void)
 
 bool menu(Keeper& keep)
 {
-	int answer;
-	Keeper* container; 
+	int answer; 
 	Bookshop* member;
 	std::cout << "Select an action:" << std::endl;
 	std::cout << "1 - Add an element" << std::endl;
@@ -48,7 +47,14 @@ bool menu(Keeper& keep)
 			break;
 		case 0:
 			return true;
+		default:
+			return true;
 		}
+		member->iostream_in();
+		keep.insertMember(member, keep.get_length()-1);
+		std::cout << "Successfully added." << std::endl;
+		system("pause");
+		system("cls");
 		break;
 	case 2:
 
@@ -64,7 +70,9 @@ bool menu(Keeper& keep)
 
 		break;
 	case 6:
-
+		keep.printAll();
+		system("pause");
+		system("cls");
 		break;
 	case 0:
 		return false;
