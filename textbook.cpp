@@ -53,6 +53,23 @@ void Textbook::fstream_out(std::ofstream& fout) const
 	}
 }
 
+void Textbook::iostream_out() const
+{
+	std::cout << "Type: Textbook" << std::endl;
+	if (is_defined())
+	{
+		std::cout << "Name: " << name << std::endl;
+		std::cout << "Author: " << author << std::endl;
+		std::cout << "Year: " << year << std::endl;
+		std::cout << "Institution: " << institution << std::endl;
+		std::cout << "Study year: " << study_year << std::endl;
+		std::cout << "Number of pages: " << num_of_pages << std::endl;
+		std::cout << "Price: " << price << std::endl;
+	}
+	else
+		std::cout << "Not defined" << std::endl;
+}
+
 std::string Textbook::get_name() const
 {
 	return name;

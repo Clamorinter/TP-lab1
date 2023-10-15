@@ -11,7 +11,6 @@ public:
 	virtual void fstream_in(std::ifstream &fin) = 0;
 	virtual void fstream_out(std::ofstream& fout) const = 0;
 
-	virtual void iostream_in() = 0;
 	virtual void iostream_out() const = 0;
 
 	char get_type() const;

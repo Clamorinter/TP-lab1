@@ -169,17 +169,16 @@ void Keeper::deleteAll()
 
 void Keeper::printMember(int n = -1) const
 {
-
+	get_node(n)->data->iostream_out();
 }
 
 void Keeper::printAll() const
 {
-
-}
-
-void Keeper::inputMember(int n)
-{
-
+	int count = length;
+	for (int i = 0; i < count; i++)
+	{
+		printMember(i);
+	}
 }
 
 Keeper& Keeper::operator= (const Keeper& original)
@@ -216,6 +215,18 @@ int Keeper::get_length() const
 }
 KeeperNode* Keeper::get_node(int n = -1)
 {
+	if (length == 0)
+	{
+		throw Keeper_Error("Invalid number of Node");
+	}
+	if (n <= -1)
+	{
+		n = 0;
+	}
+	if (n >= length - 1)
+	{
+		n = length - 1;
+	}
 	KeeperNode* Node;
 	if (n <= length / 2)
 	{
@@ -238,6 +249,18 @@ KeeperNode* Keeper::get_node(int n = -1)
 
 KeeperNode* Keeper::get_node(int n = -1) const
 {
+	if (length == 0)
+	{
+		throw Keeper_Error("Invalid number of Node");
+	}
+	if (n <= -1)
+	{
+		n = 0;
+	}
+	if (n >= length - 1)
+	{
+		n = length - 1;
+	}
 	KeeperNode* Node;
 	if (n <= length / 2)
 	{
@@ -261,10 +284,6 @@ KeeperNode* Keeper::get_node(int n = -1) const
 void operator<< (std::ostream& os, const Keeper& keep)
 {
 	keep.printAll();
-}
-void operator>> (std::istream& is, Keeper& keep)
-{
-	keep.inputMember(keep.get_length() - 1);
 }
 
 void operator<< (std::ofstream& fout, const Keeper& keep)

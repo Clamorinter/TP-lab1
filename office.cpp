@@ -24,10 +24,7 @@ Office::Office(const Office& original)
 		price = original.get_price();
 	}
 }
-Office::~Office()
-{
-
-}
+Office::~Office() {}
 
 void Office::fstream_in(std::ifstream& fin)
 {
@@ -48,6 +45,20 @@ void Office::fstream_out(std::ofstream& fout) const
 		fout << type_of << std::endl << color << std::endl << purpose
 			<< std::endl << price << std::endl;
 	}
+}
+
+void Office::iostream_out() const
+{
+	std::cout << "Type: Office" << std::endl;
+	if (is_defined())
+	{
+		std::cout << "Type of the object: " << type_of << std::endl;
+		std::cout << "Color: " << color << std::endl;
+		std::cout << "Purpose: " << purpose << std::endl;
+		std::cout << "Price: " << price << std::endl;
+	}
+	else
+		std::cout << "Not defined" << std::endl;
 }
 
 std::string Office::get_type_of() const

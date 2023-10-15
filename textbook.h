@@ -14,7 +14,6 @@ public:
 	void fstream_in(std::ifstream& fin);
 	void fstream_out(std::ofstream& fout) const;
 
-	void iostream_in();
 	void iostream_out() const;
 
 	std::string get_name() const;

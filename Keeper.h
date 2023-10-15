@@ -40,8 +40,6 @@ public:
 	void printMember(int n = -1) const;
 	void printAll() const;
 
-	void inputMember(int n);
-
 	Keeper& operator= (const Keeper& original);
 	Keeper operator+ (const Keeper& second);
 
@@ -50,7 +48,6 @@ public:
 	KeeperNode* get_node(int n) const;
 
 	friend void operator<< (std::ostream& os, const Keeper& keep);
-	friend void operator>> (std::istream& is, Keeper& keep);
 
 	friend void operator<< (std::ofstream& fout, const Keeper& keep);
 	friend void operator>> (std::ifstream& fin, Keeper& keep);
