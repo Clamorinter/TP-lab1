@@ -20,13 +20,13 @@ public:
 	Keeper(const Keeper& original);
 	~Keeper();
 
-	const void save_all(const std::ifstream &fin);
+	void save_all(const std::ifstream &fin) const;
 	void read_all(const std::ofstream &fout);
 
 	void addMemberAfter(const Bookshop* member, int number);
 	void deleteMember(int i);
 
-	int get_length();
+	int get_length() const;
 private:
 	KeeperNode* head;
 	KeeperNode* tail;

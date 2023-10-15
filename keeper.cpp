@@ -17,7 +17,7 @@ Keeper::~Keeper()
 
 }
 
-const void Keeper::save_all(const std::ifstream& fin)
+void Keeper::save_all(const std::ifstream& fin) const
 {
 	
 }
@@ -38,7 +38,7 @@ void Keeper::deleteMember(int i)
 
 }
 
-int Keeper::get_length()
+int Keeper::get_length() const
 {
 	return length;
 }

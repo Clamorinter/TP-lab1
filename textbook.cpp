@@ -26,31 +26,31 @@ Bookshop* Textbook::fstream_out(const std::ofstream& fout)
 
 }
 
-const std::string Textbook::get_name()
+std::string Textbook::get_name() const
 {
 	return name;
 }
-const std::string Textbook::get_author()
+std::string Textbook::get_author() const
 {
 	return author;
 }
-const int Textbook::get_year()
+int Textbook::get_year() const
 {
 	return year;
 }
-const std::string Textbook::get_institution()
+std::string Textbook::get_institution() const
 {
 	return institution;
 }
-const int Textbook::get_study_year()
+int Textbook::get_study_year() const
 {
 	return study_year;
 }
-const int Textbook::get_num_of_pages()
+int Textbook::get_num_of_pages() const
 {
 	return num_of_pages;
 }
-const double Textbook::get_price()
+double Textbook::get_price() const
 {
 	return price;
 }

@@ -2,15 +2,20 @@
 
 Book::Book()
 {
-
+	set_type('b');
+	set_defined(false);
 }
 Book::Book(std::string name, std::string author, int year,
 	std::string annotation, std::string genre, int num_of_pages, double price) :
 	name(name), author(author), year(year), annotation(annotation), genre(genre),
-	num_of_pages(num_of_pages), price(price) {};
+	num_of_pages(num_of_pages), price(price) 
+{
+	set_type('b');
+	set_defined(true);
+};
 Book::Book(const Book& original)
 {
-
+	name = original.get_name();
 }
 Book::~Book()
 {
@@ -26,31 +31,31 @@ Bookshop* Book::fstream_out(const std::ofstream& fout)
 
 }
 
-const std::string Book::get_name()
+std::string Book::get_name() const
 {
 	return name;
 }
-const std::string Book::get_author()
+std::string Book::get_author() const
 {
 	return author;
 }
-const int Book::get_year()
+int Book::get_year() const
 {
 	return year;
 }
-const std::string Book::get_annotation()
+std::string Book::get_annotation() const
 {
 	return annotation;
 }
-const std::string Book::get_genre()
+std::string Book::get_genre() const
 {
 	return genre;
 }
-const int Book::get_num_of_pages()
+int Book::get_num_of_pages() const
 {
 	return num_of_pages;
 }
-const double Book::get_price()
+double Book::get_price() const
 {
 	return price;
 }

@@ -14,10 +14,10 @@ public:
 	void fstream_in(const std::ifstream& fin);
 	Bookshop* fstream_out(const std::ofstream& fout);
 
-	const std::string get_type_of();
-	const std::string get_color();
-	const std::string get_purpose();
-	const double get_price();
+	std::string get_type_of() const;
+	std::string get_color() const;
+	std::string get_purpose() const;
+	double get_price() const;
 
 	void set_type_of(std::string type_of);
 	void set_color(std::string color);

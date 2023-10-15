@@ -25,19 +25,19 @@ Bookshop* Office::fstream_out(const std::ofstream& fout)
 
 }
 
-const std::string Office::get_type_of()
+std::string Office::get_type_of() const
 {
 	return type_of;
 }
-const std::string Office::get_color()
+std::string Office::get_color() const
 {
 	return color;
 }
-const std::string Office::get_purpose()
+std::string Office::get_purpose() const
 {
 	return purpose;
 }
-const double Office::get_price()
+double Office::get_price() const
 {
 	return price;
 }

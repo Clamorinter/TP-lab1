@@ -14,13 +14,13 @@ public:
 	void fstream_in(const std::ifstream& fin);
 	Bookshop* fstream_out(const std::ofstream& fout);
 
-	const std::string get_name();
-	const std::string get_author();
-	const int get_year();
-	const std::string get_annotation();
-	const std::string get_genre();
-	const int get_num_of_pages();
-	const double get_price();
+	std::string get_name() const;
+	std::string get_author() const;
+	int get_year() const;
+	std::string get_annotation() const;
+	std::string get_genre() const;
+	int get_num_of_pages() const;
+	double get_price() const;
 
 	void set_name(std::string name);
 	void set_author(std::string author);

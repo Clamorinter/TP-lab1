@@ -3,11 +3,12 @@
 Bookshop::Bookshop()
 {
 	type = 'a';
+	defined = false;
 }
 
 Bookshop::~Bookshop() {}
 
-const char Bookshop::get_type()
+char Bookshop::get_type() const
 {
 	return type;
 }
@@ -15,4 +16,13 @@ const char Bookshop::get_type()
 void Bookshop::set_type(char type)
 {
 	this->type = type;
+}
+
+bool Bookshop::is_defined() const
+{
+	return defined;
+}
+void Bookshop::set_defined(bool def)
+{
+	defined = def;
 }
