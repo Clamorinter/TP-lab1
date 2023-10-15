@@ -9,6 +9,7 @@ const char* Keeper_Error::what() const noexcept
 
 Keeper::Keeper()
 {
+	head = tail = nullptr;
 	length = 0;
 }
 Keeper::Keeper(const Bookshop* head)
@@ -35,22 +36,37 @@ void Keeper::read_all(const std::ofstream& fout)
 
 }
 
-void Keeper::addMemberAfter(Bookshop* member, int number)
+void Keeper::insertMember(Bookshop* member, int n = 0)
 {
-	if (number >= length)
-	{
-		throw Keeper_Error("Invalid number of the previous Node");
-	}
-	if (number == -1)
-	{
-		KeeperNode* newNode = new KeeperNode;
-		newNode->data = member;
-		newNode->next = nullptr;
-		newNode->prev = nullptr;
-	}
+
 }
 
-void Keeper::deleteMember(int i)
+
+void Keeper::deleteMember(int n = 0)
+{
+
+}
+
+void Keeper::deleteAll()
+{
+
+}
+
+void Keeper::printMember(int n = 0) const
+{
+
+}
+
+void Keeper::printAll() const
+{
+
+}
+
+Keeper& Keeper::operator= (const Keeper&)
+{
+
+}
+Keeper Keeper::operator+ (const Keeper&)
 {
 
 }
@@ -58,4 +74,8 @@ void Keeper::deleteMember(int i)
 int Keeper::get_length() const
 {
 	return length;
+}
+Bookshop* Keeper::get_node(int n = 0) const
+{
+
 }
