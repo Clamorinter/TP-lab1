@@ -56,10 +56,15 @@ void Keeper::read_all(std::ifstream& fin)
 {
 	char type;
 	Bookshop* newData;
+	bool check;
 	while (!fin.eof())
 	{
 		fin >> type;
 		if (fin.eof())
+		{
+			break;
+		}
+		if (fin.fail())
 		{
 			break;
 		}
