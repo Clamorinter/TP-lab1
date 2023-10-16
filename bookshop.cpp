@@ -30,3 +30,14 @@ void Bookshop::set_defined(bool def)
 {
 	defined = def;
 }
+
+bool Bookshop::cin_error_check(std::istream& cin)
+{
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return true;
+	}
+	return false;
+}

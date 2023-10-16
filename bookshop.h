@@ -19,6 +19,8 @@ public:
 	char get_type() const;
 	void set_type(char type);
 
+	bool cin_error_check(std::istream& cin);
+
 	bool is_defined() const;
 	void set_defined(bool def);
 private:

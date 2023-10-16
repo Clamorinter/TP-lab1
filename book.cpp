@@ -91,6 +91,12 @@ void Book::iostream_in()
 	std::getline(std::cin, author);
 	std::cout << "Type year: ";
 	std::cin >> year;
+	if (cin_error_check(std::cin))
+	{
+		set_defined(false);
+		year = 0;
+		return;
+	}
 	std::cout << "Type annotation: ";
 	std::cin.ignore();
 	std::getline(std::cin, annotation);
@@ -98,8 +104,20 @@ void Book::iostream_in()
 	std::getline(std::cin, genre);
 	std::cout << "Type number of pages: ";
 	std::cin >> num_of_pages;
+	if (cin_error_check(std::cin))
+	{
+		set_defined(false);
+		num_of_pages = 0;
+		return;
+	}
 	std::cout << "Type price: ";
 	std::cin >> price;
+	if (cin_error_check(std::cin))
+	{
+		set_defined(false);
+		num_of_pages = 0;
+		return;
+	}
 	set_defined(true);
 }
 
@@ -107,7 +125,8 @@ void Book::change_param()
 {
 	if (!is_defined())
 	{
-		return; //place for a throw
+		std::cout << "This book is not defined." << std::endl;
+		return;
 	}
 	int answer;
 	std::cout << "Which parameter do you want to change?" << std::endl;
@@ -120,6 +139,7 @@ void Book::change_param()
 	std::cout << "7 - price" << std::endl;
 	std::cout << ">";
 	std::cin >> answer;
+	if (cin_error_check(std::cin)) return;
 	switch (answer)
 	{
 	case 1:
@@ -138,6 +158,12 @@ void Book::change_param()
 		std::cout << "Old year: " << year << std::endl;
 		std::cout << "New year: ";
 		std::cin >> year;
+		if (cin_error_check(std::cin))
+		{
+			set_defined(false);
+			year = 0;
+			return;
+		}
 		break;
 	case 4:
 		std::cout << "Old annotation: " << annotation << std::endl;
@@ -155,11 +181,23 @@ void Book::change_param()
 		std::cout << "Old number of pages: " << num_of_pages << std::endl;
 		std::cout << "New number of pages: ";
 		std::cin >> num_of_pages;
+		if (cin_error_check(std::cin))
+		{
+			set_defined(false);
+			num_of_pages = 0;
+			return;
+		}
 		break;
 	case 7:
 		std::cout << "Old price: " << price << std::endl;
 		std::cout << "New price: ";
 		std::cin >> price;
+		if (cin_error_check(std::cin))
+		{
+			set_defined(false);
+			price = 0;
+			return;
+		}
 		break;
 	}
 }

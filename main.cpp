@@ -1,6 +1,8 @@
 #include "Keeper.h"
+#include <limits>
 
 bool menu(Keeper& keep);
+bool cin_error_check(std::istream& cin);
 
 int main(void)
 {
@@ -16,7 +18,7 @@ bool menu(Keeper& keep)
 	std::ifstream fin;
 	std::ofstream fout;
 	int length;
-	Keeper loaded;
+	Keeper* loaded;
 	Bookshop* member;
 	std::cout << "Select an action:" << std::endl;
 	std::cout << "1 - Add an element" << std::endl;
@@ -29,6 +31,13 @@ bool menu(Keeper& keep)
 	std::cout << "0 - Exit program" << std::endl;
 	std::cout << ">";
 	std::cin >> answer;
+	if (cin_error_check(std::cin))
+	{
+		std::cout << "Wrong input." << std::endl;
+		system("pause");
+		system("cls");
+		return true;
+	}
 	system("cls");
 	switch (answer)
 	{
@@ -40,6 +49,13 @@ bool menu(Keeper& keep)
 		std::cout << "0 - go back" << std::endl;
 		std::cout << ">";
 		std::cin >> answer;
+		if (cin_error_check(std::cin))
+		{
+			std::cout << "Wrong input." << std::endl;
+			system("pause");
+			system("cls");
+			return true;
+		}
 		switch (answer)
 		{
 		case 1:
@@ -67,6 +83,13 @@ bool menu(Keeper& keep)
 		keep.printAll();
 		std::cout << ">";
 		std::cin >> answer;
+		if (cin_error_check(std::cin))
+		{
+			std::cout << "Wrong input." << std::endl;
+			system("pause");
+			system("cls");
+			return true;
+		}
 		try
 		{
 			keep.deleteMember(answer - 1);
@@ -85,6 +108,15 @@ bool menu(Keeper& keep)
 		keep.printAll();
 		std::cout << ">";
 		std::cin >> answer;
+		if (cin_error_check(std::cin))
+		{
+			{
+				std::cout << "Wrong input." << std::endl;
+				system("pause");
+				system("cls");
+				return true;
+			}
+		}
 		system("cls");
 		try {
 			keep.get_node(answer - 1)->data->change_param();
@@ -127,13 +159,15 @@ bool menu(Keeper& keep)
 			system("cls");
 			return true;
 		}
-		fin >> loaded;
-		keep += loaded;
-		length = loaded.get_length();
+		loaded = new Keeper;
+		fin >> *loaded;
+		keep += *loaded;
+		length = loaded->get_length();
 		for (int i = 0; i < length; i++)
 		{
-			loaded.get_node(i)->data = nullptr;
+			loaded->get_node(i)->data = nullptr;
 		}
+		delete loaded;
 		fin.close();
 		std::cout << "Successfully loaded." << std::endl;
 		system("pause");
@@ -154,4 +188,15 @@ bool menu(Keeper& keep)
 		return false;
 	}
 	return true;
+}
+
+bool cin_error_check(std::istream& cin)
+{
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return true;
+	}
+	return false;
 }

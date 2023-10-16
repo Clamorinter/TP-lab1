@@ -42,8 +42,7 @@ void Office::fstream_in(std::ifstream& fin)
 	{
 		fin.ignore();
 		std::getline(fin, type_of);
-		fin >> color;
-		fin.ignore();
+		std::getline(fin, color);
 		std::getline(fin, purpose);
 		fin >> price;
 	}
@@ -78,12 +77,17 @@ void Office::iostream_in()
 	std::cin.ignore();
 	std::getline(std::cin, type_of);
 	std::cout << "Type color: ";
-	std::cin >> color;
+	std::getline(std::cin, color);
 	std::cout << "Type purpose: ";
-	std::cin.ignore();
 	std::getline(std::cin, purpose);
 	std::cout << "Type price: ";
 	std::cin >> price;
+	if (cin_error_check(std::cin))
+	{
+		set_defined(false);
+		price = 0;
+		return;
+	}
 	set_defined(true);
 }
 
@@ -91,7 +95,8 @@ void Office::change_param()
 {
 	if (!is_defined())
 	{
-		return; //place for a throw
+		std::cout << "Office is not defined." << std::endl;
+		return;
 	}
 	int answer;
 	std::cout << "Which parameter do you want to change?" << std::endl;
@@ -101,6 +106,7 @@ void Office::change_param()
 	std::cout << "4 - price" << std::endl;
 	std::cout << ">";
 	std::cin >> answer;
+	if (cin_error_check(std::cin)) return;
 	switch (answer)
 	{
 	case 1:
@@ -112,7 +118,7 @@ void Office::change_param()
 	case 2:
 		std::cout << "Old color: " << color << std::endl;
 		std::cout << "New color: ";
-		std::cin >> color;
+		std::getline(std::cin, color);
 		break;
 	case 3:
 		std::cout << "Old purpose: " << purpose << std::endl;
@@ -124,6 +130,12 @@ void Office::change_param()
 		std::cout << "Old price: " << price << std::endl;
 		std::cout << "New price: ";
 		std::cin >> price;
+		if (cin_error_check(std::cin))
+		{
+			set_defined(false);
+			price = 0;
+			return;
+		}
 		break;
 	}
 }
