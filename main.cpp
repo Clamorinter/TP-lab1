@@ -161,7 +161,18 @@ bool menu(Keeper& keep)
 		}
 		loaded = new Keeper;
 		fin >> *loaded;
-		keep += *loaded;
+		try {
+			keep += *loaded;
+		}
+		catch (const Keeper_Error& err)
+		{
+			std::cout << "Keeper Error: " << err.what() << std::endl;
+			delete loaded;
+			fin.close();
+			system("pause");
+			system("cls");
+			break;
+		}
 		length = loaded->get_length();
 		for (int i = 0; i < length; i++)
 		{
