@@ -139,7 +139,7 @@ bool menu(Keeper& keep)
 			std::cout << "Cannot open this file" << std::endl;
 			system("pause");
 			system("cls");
-			return true;
+			break;
 		}
 		fout << keep;
 		std::cout << "Successfully saved." << std::endl;
@@ -157,7 +157,7 @@ bool menu(Keeper& keep)
 			std::cout << "Cannot open this file" << std::endl;
 			system("pause");
 			system("cls");
-			return true;
+			break;
 		}
 		loaded = new Keeper;
 		fin >> *loaded;
